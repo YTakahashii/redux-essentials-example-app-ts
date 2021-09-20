@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Navbar: React.VFC = () => {
   return (
@@ -7,7 +8,9 @@ export const Navbar: React.VFC = () => {
         <h1>Redux Essentials Example</h1>
 
         <div className="navContent">
-          <div className="navLinks"></div>
+          <div className="navLinks">
+            <Link to="/posts">Posts</Link>
+          </div>
         </div>
       </section>
     </nav>
