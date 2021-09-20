@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Navbar } from './app/Navbar';
 
-function App() {
+const App: React.VFC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <div className="App">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <section>
+                <h2>Welcome to the Redux Essentials example app!</h2>
+              </section>
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

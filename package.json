@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mswjs/data": "^0.5.1",
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -10,9 +12,19 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "classnames": "^2.3.1",
+    "date-fns": "^2.24.0",
+    "faker": "^5.5.3",
+    "miragejs": "^0.1.41",
+    "mock-socket": "^9.0.3",
+    "msw": "^0.35.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "seedrandom": "^3.0.5",
+    "txtgen": "^2.2.8",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -39,5 +51,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.9",
+    "prettier": "^2.4.1"
   }
 }
