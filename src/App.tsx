@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Navbar } from './app/Navbar';
+import { AddPostForm } from './features/posts/AddPostForm';
+import { PostsList } from './features/posts/PostsList';
 
 const App: React.VFC = () => {
   return (
@@ -12,9 +14,10 @@ const App: React.VFC = () => {
             exact
             path="/"
             render={() => (
-              <section>
-                <h2>Welcome to the Redux Essentials example app!</h2>
-              </section>
+              <>
+                <AddPostForm />
+                <PostsList />
+              </>
             )}
           />
           <Redirect to="/" />
