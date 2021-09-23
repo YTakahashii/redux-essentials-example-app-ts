@@ -1,3 +1,4 @@
+import { AsyncState } from 'src/app/asyncState';
 import { Reactions } from './reactionType';
 
 export type Post = {
@@ -8,3 +9,7 @@ export type Post = {
   date: string;
   reactions: Reactions;
 };
+
+export type PostState = {
+  posts: Post[];
+} & AsyncState;

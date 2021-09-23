@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useTypedSelector } from 'src/app/hooks';
 import { PostAuthor } from './PostAuthor';
+import { selectPostById } from './postsSlice';
 import { ReactionButtons } from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';
 
@@ -10,7 +11,7 @@ type Props = {} & RouteComponentProps<{ postId: string }>;
 
 export const SinglePostPage: React.VFC<Props> = ({ match }) => {
   const { postId } = match.params;
-  const post = useTypedSelector((state) => state.posts.find((post) => post.id === postId));
+  const post = useTypedSelector((state) => selectPostById(state, postId));
 
   if (!post) {
     return (

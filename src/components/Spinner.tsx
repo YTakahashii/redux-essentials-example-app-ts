@@ -1,8 +1,8 @@
 import React from 'react';
 
 type Props = {
-  text: string;
-  size: string;
+  text?: string;
+  size?: string;
 };
 
 export const Spinner: React.VFC<Props> = ({ text = '', size = '5em' }) => {

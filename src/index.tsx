@@ -6,9 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { worker } from './api/server';
 import store from './app/store';
+import { fetchUsers } from './features/users/usersSlice';
 
 // Start our mock API server
 worker.start({ onUnhandledRequest: 'bypass' });
+
+store.dispatch(fetchUsers());
 
 ReactDOM.render(
   <React.StrictMode>

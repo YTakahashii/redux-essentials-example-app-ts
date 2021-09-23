@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTypedDispatch } from 'src/app/hooks';
 import { reactionAdded } from './postsSlice';
-import { Post } from './postType';
+import { Post } from './postState';
 import { reactionEmoji, Reaction } from './reactionType';
 
 type Props = {

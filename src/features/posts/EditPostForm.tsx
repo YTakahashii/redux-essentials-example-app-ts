@@ -1,14 +1,14 @@
 import React, { useState, ChangeEventHandler } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router';
 import { useTypedDispatch, useTypedSelector } from 'src/app/hooks';
-import { postUpdated } from './postsSlice';
+import { postUpdated, selectPostById } from './postsSlice';
 
 type Props = RouteComponentProps<{ postId: string }>;
 
 export const EditPostForm: React.VFC<Props> = ({ match }) => {
   const { postId } = match.params;
 
-  const post = useTypedSelector((state) => state.posts.find((post) => post.id === postId));
+  const post = useTypedSelector((state) => selectPostById(state, postId));
   const [title, setTitle] = useState(post?.title ?? '');
   const [content, setContent] = useState(post?.content ?? '');
 

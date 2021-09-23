@@ -1,26 +1,37 @@
 import React, { useState, ChangeEventHandler } from 'react';
 import { useTypedDispatch, useTypedSelector } from 'src/app/hooks';
-import { postAdded } from './postsSlice';
+import { addNewPost } from './postsSlice';
 
 export const AddPostForm: React.VFC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [userId, setUserId] = useState('');
+  const [addRequestStatus, setAddRequestStatus] = useState<'idle' | 'pending'>('idle');
+
   const dispatch = useTypedDispatch();
   const users = useTypedSelector((state) => state.users);
 
   const onTitleChanged: ChangeEventHandler<HTMLInputElement> = (e) => setTitle(e.target.value);
   const onContentChanged: ChangeEventHandler<HTMLTextAreaElement> = (e) => setContent(e.target.value);
   const onAuthorChanged: ChangeEventHandler<HTMLSelectElement> = (e) => setUserId(e.currentTarget.value);
-  const onSavePostClicked = () => {
-    if (title && content) {
-      dispatch(postAdded({ title, content, userId }));
-    }
 
-    setTitle('');
-    setContent('');
+  const canSave = [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
+  const onSavePostClicked = async () => {
+    if (canSave) {
+      try {
+        setAddRequestStatus('pending');
+        await dispatch(addNewPost({ title, content, user: userId })).unwrap(); // 実際のaction.payload値を返すか、拒否されたアクションの場合はエラーの新しいPromiseを投げる
+
+        setTitle('');
+        setContent('');
+        setUserId('');
+      } catch (err) {
+        console.error('Failed to save the post: ', err);
+      } finally {
+        setAddRequestStatus('idle');
+      }
+    }
   };
-  const canSave = !!title && !!content && !!userId;
 
   const usersOptions = users.map((user) => (
     <option key={user.id} value={user.id}>
