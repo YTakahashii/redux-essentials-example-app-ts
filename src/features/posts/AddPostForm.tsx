@@ -1,5 +1,6 @@
 import React, { useState, ChangeEventHandler } from 'react';
 import { useTypedDispatch, useTypedSelector } from 'src/app/hooks';
+import { selectAllUsers } from '../users/usersSlice';
 import { addNewPost } from './postsSlice';
 
 export const AddPostForm: React.VFC = () => {
@@ -9,7 +10,7 @@ export const AddPostForm: React.VFC = () => {
   const [addRequestStatus, setAddRequestStatus] = useState<'idle' | 'pending'>('idle');
 
   const dispatch = useTypedDispatch();
-  const users = useTypedSelector((state) => state.users);
+  const users = useTypedSelector(selectAllUsers);
 
   const onTitleChanged: ChangeEventHandler<HTMLInputElement> = (e) => setTitle(e.target.value);
   const onContentChanged: ChangeEventHandler<HTMLTextAreaElement> = (e) => setContent(e.target.value);
